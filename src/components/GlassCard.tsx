@@ -58,14 +58,14 @@ const GlassCard = ({
       {/* Glass Container - Default Size (35% height), Expands to fill entire card on hover */}
       <div 
         className={cn(
-          "absolute glass-dark p-6 z-10 transition-all duration-500 ease-out",
+          "absolute glass-dark p-6 z-10 transition-all duration-800 ease-out",
           isHovered 
             ? "inset-0 rounded-2xl" // Full card with no margin when hovered
             : "bottom-0 left-0 right-0 h-[35%] rounded-xl mx-3 mb-3" // Default state with margins
         )}
       >
-        {/* Title - Always Visible */}
-        <h3 className="text-white text-2xl font-semibold mb-3">{title}</h3>
+        {/* Title - Always Visible, with line wrapping */}
+        <h3 className="text-white text-2xl font-semibold mb-3 break-words hyphens-auto">{title}</h3>
         
         {/* Category & Date - Appears below title on hover */}
         <div className={cn(
@@ -91,25 +91,29 @@ const GlassCard = ({
           onClick={onClick}
           className={cn(
             "mt-4 flex items-center gap-3 bg-white text-black px-5 py-3 rounded-full",
-            "font-medium text-base group/button",
+            "font-medium text-sm group/button",
             "opacity-0 transform translate-y-4 transition-all duration-500",
             isHovered && "opacity-100 translate-y-0 absolute bottom-6 right-6"
           )}
         >
+          {/* First arrow - visible by default, slides out on button hover */}
+          <span className="relative overflow-hidden flex items-center">
+            <span className="transition-transform duration-500 relative z-10">{buttonText}</span>
+            <ArrowRight 
+              size={22} 
+              className={cn(
+                "ml-1 transition-all duration-500 ease-in-out relative",
+                "group-hover/button:translate-x-[100px] group-hover/button:opacity-0"
+              )}
+            />
+          </span>
+          
+          {/* Second arrow - only visible on button hover, slides in from left */}
           <ArrowRight 
-            size={20} 
+            size={22} 
             className={cn(
-              "transition-all duration-500 ease-in-out",
-              "group-hover/button:translate-x-[-100px] group-hover/button:opacity-0",
-              "relative group-hover/button:left-[120px]"
-            )}
-          />
-          <span className="relative z-10">{buttonText}</span>
-          <ArrowRight 
-            size={20} 
-            className={cn(
-              "absolute transition-all duration-500 ease-in-out opacity-0",
-              "group-hover/button:opacity-100 group-hover/button:translate-x-[-85px]"
+              "absolute left-0 transition-all duration-500 ease-in-out opacity-0 transform -translate-x-full",
+              "group-hover/button:opacity-100 group-hover/button:translate-x-5"
             )}
           />
         </button>
