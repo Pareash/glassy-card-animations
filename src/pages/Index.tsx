@@ -10,6 +10,7 @@ const cardData = [
     category: "Article",
     date: "November 7, 2024",
     title: "GenAI Will Fail. Prepare for It.",
+    description: "While generative AI has the potential to transform many industries, organizations need to prepare for the inevitable failures and limitations that will emerge as the technology matures."
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const cardData = [
     category: "Insight",
     date: "October 12, 2024",
     title: "The Future of Digital Transformation",
+    description: "Digital transformation continues to reshape business models across industries. Learn how leading companies are leveraging emerging technologies to stay ahead of the competition."
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const cardData = [
     category: "Research",
     date: "September 21, 2024",
     title: "Rethinking Business Strategy in AI Era",
+    description: "As artificial intelligence becomes more integrated into business processes, organizations must rethink their strategic approaches to capitalize on new opportunities and mitigate risks."
   },
 ];
 
@@ -57,6 +60,7 @@ const Index = () => {
               category={card.category}
               date={card.date}
               title={card.title}
+              description={card.description}
               onClick={() => handleCardClick(card.title)}
               buttonText="Read More"
             />
