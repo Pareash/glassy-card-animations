@@ -44,20 +44,24 @@ const GlassCard = ({
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-      {/* Category & Date - Always Visible */}
-      <div className="absolute top-0 left-0 right-0 flex justify-between p-4 z-20">
+      {/* Category & Date - Visible by default at top, moves inside glass on hover */}
+      <div className={cn(
+        "absolute flex justify-between p-4 z-20 w-full transition-all duration-300",
+        isHovered ? "top-[65px] px-6" : "top-0"
+      )}>
         <div className="uppercase text-xs font-semibold tracking-wider bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm animate-fade-in">
           {category}
         </div>
         <div className="text-white/70 text-sm animate-fade-in">{date}</div>
       </div>
 
-      {/* Glass Container - Default Size (35% height) */}
+      {/* Glass Container - Default Size (35% height), Expands to fill entire card on hover */}
       <div 
         className={cn(
-          "absolute bottom-0 left-0 right-0 h-[35%] glass-dark p-6 z-10 rounded-xl mx-3 mb-3",
-          "transition-all duration-300 ease-out",
-          isHovered && "h-[calc(100%-24px)] mx-3 my-3" // Expand to full card minus margins when hovered
+          "absolute glass-dark p-6 z-10 transition-all duration-300 ease-out",
+          isHovered 
+            ? "inset-0 rounded-2xl" // Full card with no margin when hovered
+            : "bottom-0 left-0 right-0 h-[35%] rounded-xl mx-3 mb-3" // Default state with margins
         )}
       >
         {/* Title - Always Visible */}
@@ -72,21 +76,29 @@ const GlassCard = ({
           {description}
         </p>
 
-        {/* Button - Visible on Hover */}
+        {/* Button - Visible on Hover, positioned at bottom right */}
         <button
           onClick={onClick}
           className={cn(
-            "mt-4 flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full",
-            "font-medium text-sm group/button",
+            "mt-4 flex items-center gap-3 bg-white text-black px-5 py-3 rounded-full",
+            "font-medium text-base group/button",
             "opacity-0 transform translate-y-4 transition-all duration-300",
-            isHovered && "opacity-100 translate-y-0"
+            isHovered && "opacity-100 translate-y-0 absolute bottom-6 right-6"
           )}
         >
-          {buttonText}
           <ArrowRight 
-            size={16} 
-            className="transition-transform duration-300 group-hover/button:translate-x-1"
+            size={20} 
+            className={cn(
+              "transition-all duration-300",
+              "group-hover:translate-x-[-32px] group-hover/button:translate-x-[-40px]"
+            )}
           />
+          <span className={cn(
+            "transition-all duration-300",
+            "group-hover:translate-x-[-10px] group-hover/button:translate-x-[-20px]"
+          )}>
+            {buttonText}
+          </span>
         </button>
       </div>
     </div>
