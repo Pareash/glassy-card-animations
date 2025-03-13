@@ -90,27 +90,27 @@ const GlassCard = ({
         <button
           onClick={onClick}
           className={cn(
-            "mt-4 flex items-center gap-3 bg-white text-black px-5 py-3 rounded-full",
+            "mt-4 flex items-center bg-white text-black px-5 py-3 rounded-full",
             "font-medium text-sm group/button",
             "opacity-0 transform translate-y-4 transition-all duration-1600",
             isHovered && "opacity-100 translate-y-0 absolute bottom-6 right-6"
           )}
         >
-          {/* First arrow - visible by default, slides out on button hover */}
-          <span className="relative overflow-hidden flex items-center">
-            <span className="transition-transform duration-1600 relative z-10 group-hover/button:translate-x-2">
+          {/* First arrow - only visible before hover, slides out on button hover */}
+          <span className="relative overflow-hidden flex items-center w-28 justify-between">
+            <span className="transition-transform duration-1600 relative z-10 group-hover/button:translate-x-[80px]">
               {buttonText}
             </span>
             <ArrowRight 
               size={22} 
               className={cn(
-                "ml-1 transition-all duration-1600 ease-in-out relative",
+                "transition-all duration-1600 ease-in-out relative",
                 "group-hover/button:translate-x-[100px] group-hover/button:opacity-0"
               )}
             />
           </span>
           
-          {/* Second arrow - only visible on button hover, slides in from left */}
+          {/* Second arrow - only visible on hover, slides in from left */}
           <ArrowRight 
             size={22} 
             className={cn(
