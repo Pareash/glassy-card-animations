@@ -96,28 +96,31 @@ const GlassCard = ({
             isHovered && "opacity-100 translate-y-0 absolute bottom-6 right-6"
           )}
         >
-          {/* First arrow - only visible before hover, slides out on button hover */}
-          <span className="relative overflow-hidden flex items-center w-28 justify-between">
-            <span className="transition-transform duration-1600 relative z-10 group-hover/button:translate-x-[80px]">
+          {/* Button content with fixed width and better text animation */}
+          <span className="relative flex items-center justify-between w-24">
+            {/* Text that slides right on hover */}
+            <span className="transition-transform duration-1600 whitespace-nowrap group-hover/button:translate-x-7">
               {buttonText}
             </span>
+            
+            {/* First arrow - only visible before hover */}
             <ArrowRight 
               size={22} 
               className={cn(
-                "transition-all duration-1600 ease-in-out relative",
-                "group-hover/button:translate-x-[100px] group-hover/button:opacity-0"
+                "absolute right-0 transition-all duration-1600",
+                "group-hover/button:opacity-0 group-hover/button:translate-x-8"
+              )}
+            />
+            
+            {/* Second arrow - only visible on hover, slides in from left */}
+            <ArrowRight 
+              size={22} 
+              className={cn(
+                "absolute left-0 transition-all duration-1600 opacity-0 -translate-x-4",
+                "group-hover/button:opacity-100 group-hover/button:translate-x-0"
               )}
             />
           </span>
-          
-          {/* Second arrow - only visible on hover, slides in from left */}
-          <ArrowRight 
-            size={22} 
-            className={cn(
-              "absolute left-0 transition-all duration-1600 ease-in-out opacity-0 transform -translate-x-full",
-              "group-hover/button:opacity-100 group-hover/button:translate-x-5"
-            )}
-          />
         </button>
       </div>
     </div>
