@@ -46,7 +46,7 @@ const GlassCard = ({
 
       {/* Category & Date - Visible by default at top, disappear on hover */}
       <div className={cn(
-        "absolute flex justify-between p-4 z-20 w-full transition-all duration-500",
+        "absolute flex justify-between p-4 z-20 w-full transition-all duration-800",
         isHovered ? "opacity-0" : "top-0 opacity-100"
       )}>
         <div className="uppercase text-xs font-semibold tracking-wider bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm animate-fade-in">
@@ -58,7 +58,7 @@ const GlassCard = ({
       {/* Glass Container - Default Size (35% height), Expands to fill entire card on hover */}
       <div 
         className={cn(
-          "absolute glass-dark p-6 z-10 transition-all duration-800 ease-out",
+          "absolute glass-dark p-6 z-10 transition-all duration-1200 ease-out",
           isHovered 
             ? "inset-0 rounded-2xl" // Full card with no margin when hovered
             : "bottom-0 left-0 right-0 h-[35%] rounded-xl mx-3 mb-3" // Default state with margins
@@ -70,7 +70,7 @@ const GlassCard = ({
         {/* Category & Date - Appears below title on hover */}
         <div className={cn(
           "flex justify-between text-white/80 mb-3",
-          "opacity-0 max-h-0 overflow-hidden transition-all duration-500",
+          "opacity-0 max-h-0 overflow-hidden transition-all duration-800",
           isHovered && "opacity-100 max-h-[50px]"
         )}>
           <div className="text-sm">{category}</div>
@@ -80,7 +80,7 @@ const GlassCard = ({
         {/* Description - Visible on Hover */}
         <p className={cn(
           "text-white/80 line-clamp-3 text-sm",
-          "opacity-0 max-h-0 overflow-hidden transition-all duration-500",
+          "opacity-0 max-h-0 overflow-hidden transition-all duration-800",
           isHovered && "opacity-100 max-h-[200px]"
         )}>
           {description}
@@ -92,17 +92,19 @@ const GlassCard = ({
           className={cn(
             "mt-4 flex items-center gap-3 bg-white text-black px-5 py-3 rounded-full",
             "font-medium text-sm group/button",
-            "opacity-0 transform translate-y-4 transition-all duration-500",
+            "opacity-0 transform translate-y-4 transition-all duration-800",
             isHovered && "opacity-100 translate-y-0 absolute bottom-6 right-6"
           )}
         >
           {/* First arrow - visible by default, slides out on button hover */}
           <span className="relative overflow-hidden flex items-center">
-            <span className="transition-transform duration-500 relative z-10">{buttonText}</span>
+            <span className="transition-transform duration-800 relative z-10 group-hover/button:translate-x-2">
+              {buttonText}
+            </span>
             <ArrowRight 
               size={22} 
               className={cn(
-                "ml-1 transition-all duration-500 ease-in-out relative",
+                "ml-1 transition-all duration-800 ease-in-out relative",
                 "group-hover/button:translate-x-[100px] group-hover/button:opacity-0"
               )}
             />
@@ -112,7 +114,7 @@ const GlassCard = ({
           <ArrowRight 
             size={22} 
             className={cn(
-              "absolute left-0 transition-all duration-500 ease-in-out opacity-0 transform -translate-x-full",
+              "absolute left-0 transition-all duration-800 ease-in-out opacity-0 transform -translate-x-full",
               "group-hover/button:opacity-100 group-hover/button:translate-x-5"
             )}
           />
