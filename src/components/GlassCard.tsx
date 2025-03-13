@@ -64,22 +64,27 @@ const GlassCard = ({
             : "bottom-0 left-0 right-0 h-[35%] rounded-xl mx-3 mb-3" // Default state with margins
         )}
       >
-        {/* Title - Always Visible, with line wrapping */}
-        <h3 className="text-white text-2xl font-semibold mb-3 break-words hyphens-auto">{title}</h3>
+        {/* Title - Always Visible, with larger font size and more prominence */}
+        <h3 className={cn(
+          "text-white font-semibold break-words hyphens-auto leading-tight transition-all duration-1600",
+          isHovered ? "text-4xl mb-6" : "text-2xl mb-3" // Larger font on hover
+        )}>
+          {title}
+        </h3>
         
         {/* Category & Date - Appears below title on hover */}
         <div className={cn(
-          "flex justify-between text-white/80 mb-3",
+          "flex justify-between text-white/80 mb-4",
           "opacity-0 max-h-0 overflow-hidden transition-all duration-1600",
           isHovered && "opacity-100 max-h-[50px]"
         )}>
-          <div className="text-sm">{category}</div>
+          <div className="text-sm font-medium">{category}</div>
           <div className="text-sm">{date}</div>
         </div>
         
-        {/* Description - Visible on Hover */}
+        {/* Description - Visible on Hover with improved styling */}
         <p className={cn(
-          "text-white/80 line-clamp-3 text-sm",
+          "text-white/90 text-base leading-relaxed",
           "opacity-0 max-h-0 overflow-hidden transition-all duration-1600",
           isHovered && "opacity-100 max-h-[200px]"
         )}>
@@ -97,9 +102,9 @@ const GlassCard = ({
           )}
         >
           {/* Button content with fixed width and better text animation */}
-          <span className="relative flex items-center justify-between w-24">
+          <span className="relative flex items-center justify-between w-28">
             {/* Text that slides right on hover */}
-            <span className="transition-transform duration-1600 whitespace-nowrap group-hover/button:translate-x-7">
+            <span className="transition-transform duration-1600 whitespace-nowrap group-hover/button:translate-x-12">
               {buttonText}
             </span>
             
